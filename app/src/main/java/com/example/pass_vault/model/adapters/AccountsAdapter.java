@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pass_vault.R;
 import com.example.pass_vault.model.AccountItem;
+import com.example.pass_vault.utilities.CopyUtility;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -45,6 +47,15 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.Accoun
         holder.textNumber.setText(String.format(Locale.getDefault(), "%d", position + 1));
         holder.textPlatform.setText((accounts.get(position).getPlatform()));
         holder.textUsername.setText(accounts.get(position).getUsername());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CopyUtility.copy(accounts.get(position).getPassword(), holder.itemView.getContext());
+                Snackbar.make(holder.itemView,
+                        accounts.get(position).getPassword(), Snackbar.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void mockData() {
