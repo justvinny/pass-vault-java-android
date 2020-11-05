@@ -6,4 +6,9 @@
     <string name="default_account_number">1</string>
     <string name="default_platform">Platform</string>
     <string name="default_username">Username</string>
+    <string name="platform_hint">Platforn Name - e.g. Netflix</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="reenter_password_hint">Re-enter Password</string>
+    <string name="add_button_label">Add New Account</string>
 </resources>

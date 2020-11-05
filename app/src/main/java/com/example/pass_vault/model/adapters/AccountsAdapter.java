@@ -52,8 +52,10 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.Accoun
             @Override
             public void onClick(View v) {
                 CopyUtility.copy(accounts.get(position).getPassword(), holder.itemView.getContext());
-                Snackbar.make(holder.itemView,
-                        accounts.get(position).getPassword(), Snackbar.LENGTH_SHORT).show();
+
+                String snackMessage = "Copied password for " + accounts.get(position).getUsername()
+                        + " to clipboard!";
+                Snackbar.make(holder.itemView, snackMessage, Snackbar.LENGTH_SHORT).show();
             }
         });
     }
