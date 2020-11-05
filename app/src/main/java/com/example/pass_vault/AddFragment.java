@@ -28,7 +28,7 @@ public class AddFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.add_fragment, container, false);
 
-        accounts = new AccountsList();
+        accounts = new AccountsList(view.getContext());
         ePlatform = (EditText) view.findViewById(R.id.edit_platform);
         eUsername = (EditText) view.findViewById(R.id.edit_username);
         ePassword = (EditText) view.findViewById(R.id.edit_password);

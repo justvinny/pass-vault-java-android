@@ -23,7 +23,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.home_recycler);
-        recyclerView.setAdapter(new AccountsAdapter());
+        recyclerView.setAdapter(new AccountsAdapter(this.getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         return view;

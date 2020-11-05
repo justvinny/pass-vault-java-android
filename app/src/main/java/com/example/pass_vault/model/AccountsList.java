@@ -1,5 +1,6 @@
 package com.example.pass_vault.model;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.example.pass_vault.utilities.CSVUtility;
@@ -10,9 +11,11 @@ import java.util.ArrayList;
 public class AccountsList {
     private static final String TAG = "AccountsList";
     private ArrayList<AccountItem> accounts;
+    private Context context;
 
-    public AccountsList() {
-        load();
+    public AccountsList(Context context) {
+        this.context = context;
+        load(context);
     }
 
     public void add(AccountItem account) {
@@ -22,10 +25,11 @@ public class AccountsList {
             throw new IllegalArgumentException(message);
         }
 
-        new Thread(() -> {
-            accounts.add(account);
-            save();
-        }).start();
+        save(account, context);
+    }
+
+    public AccountItem get(int index) {
+        return accounts.get(index);
     }
 
     public void remove(AccountItem account) {
@@ -36,19 +40,18 @@ public class AccountsList {
         accounts.remove(index);
     }
 
-    private void load() {
-        try {
-            accounts = CSVUtility.read();
-        } catch (IOException e) {
-            accounts = new ArrayList<AccountItem>();
-        }
+    public int size() {
+        return accounts.size();
     }
 
-    private void save() {
-        try {
-            CSVUtility.write(accounts);
-        } catch (IOException e) {
-            Log.d(TAG, e.getMessage());
-        }
+    private void load(Context context) {
+        accounts = CSVUtility.read(context);
+    }
+
+    private void save(AccountItem account, Context context) {
+        new Thread(() -> {
+            accounts.add(account);
+            CSVUtility.write(accounts, context);
+        }).start();
     }
 }
