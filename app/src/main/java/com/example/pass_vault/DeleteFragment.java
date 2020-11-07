@@ -56,6 +56,7 @@ public class DeleteFragment extends Fragment {
             accounts.remove(item);
         }
 
+        recyclerView.setAdapter(new DeleteAccountsAdapter(accounts, accountsToRemove));
         recyclerView.getAdapter().notifyDataSetChanged();
     }
 }
