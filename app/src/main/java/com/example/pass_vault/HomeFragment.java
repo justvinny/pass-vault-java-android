@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pass_vault.model.adapters.AccountsAdapter;
+import com.example.pass_vault.model.adapters.HomeAccountsAdapter;
 
 public class HomeFragment extends Fragment {
 
@@ -23,7 +23,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.home_recycler);
-        recyclerView.setAdapter(new AccountsAdapter(this.getContext()));
+        recyclerView.setAdapter(new HomeAccountsAdapter(this.getContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         return view;

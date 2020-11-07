@@ -18,6 +18,7 @@ public class CSVUtility {
     private static final String FILE_NAME = "accounts.csv";
 
     public static void write(ArrayList<AccountItem> accounts, Context context) {
+        Log.d(TAG, "write: " + context.getFilesDir());
         File file = new File(context.getFilesDir(), FILE_NAME);
         FileWriter writer = null;
         try {

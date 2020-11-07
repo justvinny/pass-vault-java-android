@@ -7,11 +7,22 @@ import com.example.pass_vault.utilities.CSVUtility;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class AccountsList {
     private static final String TAG = "AccountsList";
+    private Lock writeLock, readLock;
     private ArrayList<AccountItem> accounts;
     private Context context;
+
+    {
+        ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
+        writeLock = rwLock.writeLock();
+        readLock = rwLock.readLock();
+    }
 
     public AccountsList(Context context) {
         this.context = context;
@@ -25,19 +36,45 @@ public class AccountsList {
             throw new IllegalArgumentException(message);
         }
 
-        save(account, context);
+        try {
+            writeLock.lock();
+            save(account, context);
+        } finally {
+            writeLock.unlock();
+        }
     }
 
     public AccountItem get(int index) {
-        return accounts.get(index);
+        AccountItem account;
+
+        try {
+            readLock.lock();
+            account = accounts.get(index);
+        } finally {
+            readLock.unlock();
+        }
+
+        return Objects.requireNonNull(account);
     }
 
     public void remove(AccountItem account) {
-        accounts.remove(account);
+        try {
+            writeLock.lock();
+            accounts.remove(account);
+            CSVUtility.write(accounts, context);
+        } finally {
+            writeLock.unlock();
+        }
     }
 
     public void remove (int index) {
-        accounts.remove(index);
+        try {
+            writeLock.lock();
+            accounts.remove(index);
+            CSVUtility.write(accounts, context);
+        } finally {
+            writeLock.unlock();
+        }
     }
 
     public int size() {
@@ -45,7 +82,12 @@ public class AccountsList {
     }
 
     private void load(Context context) {
-        accounts = CSVUtility.read(context);
+        try {
+            readLock.lock();
+            accounts = CSVUtility.read(context);
+        } finally {
+            readLock.unlock();
+        }
     }
 
     private void save(AccountItem account, Context context) {
