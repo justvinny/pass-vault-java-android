@@ -1,9 +1,6 @@
 # Pass Vault (Java)
 Pass Vault allows you to store your passwords for all of your accounts in one application and you won't have to worry about forgetting them ever again! This program is made for Android using Java. 
 
-# Old Desktop Version (Python)
-- [Desktop version](https://github.com/justvinny/tk_PassVolt)
-
 # Completed:
 - Note: Persistent storage is currently CSV. Will change to Room (SQLite) DAO before releasing to playstore.
 - Store accounts to persistent storage 
@@ -31,3 +28,7 @@ Pass Vault allows you to store your passwords for all of your accounts in one ap
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/add_account.jpg" alt="Add Account Screenshot" width="370" height="750">
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/delete_account.jpg" alt="Delete Account Screenshot" width="370" height="750">
+
+# Old Desktop Version (Python)
+- The desktop version is one of the very first applications I've made when I was learning Python a year ago. 
+- [Desktop version](https://github.com/justvinny/tk_PassVolt)
