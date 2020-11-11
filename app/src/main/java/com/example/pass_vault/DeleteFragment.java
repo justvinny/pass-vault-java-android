@@ -1,9 +1,11 @@
 package com.example.pass_vault;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +27,13 @@ import java.util.ArrayList;
 
 public class DeleteFragment extends Fragment {
 
+    private static final String TAG = "DeleteFragment";
     private AccountsList accounts;
     private ArrayList<AccountItem> accountsToRemove;
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
     private ProgressBar progressBar;
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     @Nullable
     @Override
@@ -47,13 +51,28 @@ public class DeleteFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteSelected();
+                new Thread(() -> {
+                    loadingAnimation();
+                    deleteSelected();
+                    loadingAnimation();
 
-                Snackbar.make(recyclerView, "Selected Items have been deleted!", Snackbar.LENGTH_SHORT).show();
+                    handler.post(() -> {
+                        updateAdapter();
+                        Snackbar.make(recyclerView, "Selected Items have been deleted!", Snackbar.LENGTH_SHORT).show();
+                    });
+
+                    accounts.setIsLoaded(false);
+                }).start();
             }
         });
 
-        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar_delete);
+
+        new Thread(() -> {
+            accounts.load();
+            loadingAnimation();
+            accounts.setIsLoaded(false);
+        }).start();
 
         return view;
     }
@@ -62,10 +81,28 @@ public class DeleteFragment extends Fragment {
         for (AccountItem item : accountsToRemove) {
             accounts.remove(item);
         }
+
         accountsToRemove.clear();
         accounts.save();
+        accounts.load();
+    }
 
+    private void updateAdapter() {
         recyclerView.setAdapter(new DeleteAccountsAdapter(accounts, accountsToRemove));
         recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    private void loadingAnimation() {
+        if (accounts.getIsLoaded()) {
+            handler.post(() -> {
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            });
+        } else {
+            handler.post(() -> {
+                progressBar.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+            });
+        }
     }
 }

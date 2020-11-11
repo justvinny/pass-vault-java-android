@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
@@ -17,14 +18,14 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class AccountsList {
     private static final String TAG = "AccountsList";
-    private LinkedBlockingQueue<AccountItem> accounts;
+    private LinkedBlockingDeque<AccountItem> accounts;
     private Context context;
+    private ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
     private AtomicBoolean isLoaded = new AtomicBoolean(false);
 
     public AccountsList(Context context) {
         this.context = context;
-        accounts = new LinkedBlockingQueue<>();
-        load();
+        accounts = new LinkedBlockingDeque<>();
     }
 
     public boolean getIsLoaded() { return isLoaded.get(); }
@@ -37,7 +38,7 @@ public class AccountsList {
             throw new IllegalArgumentException(message);
         }
 
-        accounts.offer(account);
+        accounts.push(account);
         save();
     }
 
@@ -60,11 +61,23 @@ public class AccountsList {
     }
 
     public void load() {
-        accounts.clear();
-        CSVUtility.read(context, accounts);
+        try {
+            readWriteLock.readLock().lock();
+            accounts.clear();
+            CSVUtility.read(context, accounts);
+            setIsLoaded(true);
+        } finally {
+            readWriteLock.readLock().unlock();
+        }
+
     }
 
     public void save() {
-        CSVUtility.write(context, accounts);
+        try {
+            readWriteLock.writeLock().lock();
+            CSVUtility.write(context, accounts);
+        } finally {
+            readWriteLock.writeLock().unlock();
+        }
     }
 }

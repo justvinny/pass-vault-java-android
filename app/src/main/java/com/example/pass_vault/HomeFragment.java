@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,8 @@ public class HomeFragment extends Fragment {
 
     private AccountsList accounts;
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     @Nullable
     @Override
@@ -31,6 +34,22 @@ public class HomeFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.home_recycler);
         recyclerView.setAdapter(new HomeAccountsAdapter(accounts));
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar_home);
+
+        new Thread(() -> {
+            accounts.load();
+
+           if (accounts.getIsLoaded()) {
+               handler.post(() -> {
+                   recyclerView.getAdapter().notifyDataSetChanged();
+                   progressBar.setVisibility(View.GONE);
+                   recyclerView.setVisibility(View.VISIBLE);
+               });
+
+               accounts.setIsLoaded(false);
+           }
+        }).start();
 
         return view;
     }
