@@ -10,15 +10,17 @@ Pass Vault allows you to store your passwords for all of your accounts in one ap
 - View accounts stored and copy password to clipboard
 - Delete account from persistent storage
 
+# Fixed:
+- Concurrency bugs for file I/O not showing a progress bar with Threads and Handler. 
+
 # Current Task:
-- Fixing concurrency bugs for file I/O not showing a progress bar with Threads and Handler. 
+- Add a search account feature
 
 # Unfinished:
 - Create a password generator.
 - Use SQLite with Room DAO for persistent storage.
 - Add an export to CSV feature.
 - Add a login page.
-- Add a search account feature.
 - Add a sort accounts by feature.
 - Add dark theme
 - Add About / Feedback pages.
