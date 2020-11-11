@@ -1,5 +1,6 @@
 package com.example.pass_vault.model;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.util.Log;
 
@@ -9,25 +10,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class AccountsList {
     private static final String TAG = "AccountsList";
-    private Lock writeLock, readLock;
-    private ArrayList<AccountItem> accounts;
+    private LinkedBlockingQueue<AccountItem> accounts;
     private Context context;
-
-    {
-        ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock();
-        writeLock = rwLock.writeLock();
-        readLock = rwLock.readLock();
-    }
+    private AtomicBoolean isLoaded = new AtomicBoolean(false);
 
     public AccountsList(Context context) {
         this.context = context;
-        load(context);
+        accounts = new LinkedBlockingQueue<>();
+        load();
     }
+
+    public boolean getIsLoaded() { return isLoaded.get(); }
+    public void setIsLoaded(boolean isLoaded) { this.isLoaded.set(isLoaded); }
 
     public void add(AccountItem account) {
         if (accounts.contains(account)) {
@@ -36,64 +37,34 @@ public class AccountsList {
             throw new IllegalArgumentException(message);
         }
 
-        try {
-            writeLock.lock();
-            save(account, context);
-        } finally {
-            writeLock.unlock();
-        }
+        accounts.offer(account);
+        save();
     }
 
     public AccountItem get(int index) {
-        AccountItem account;
+        ArrayList<AccountItem> accountsArr = new ArrayList<>(accounts);
 
-        try {
-            readLock.lock();
-            account = accounts.get(index);
-        } finally {
-            readLock.unlock();
-        }
-
-        return Objects.requireNonNull(account);
+        return Objects.requireNonNull(accountsArr.get(index));
     }
 
     public void remove(AccountItem account) {
-        try {
-            writeLock.lock();
-            accounts.remove(account);
-            CSVUtility.write(accounts, context);
-        } finally {
-            writeLock.unlock();
-        }
+        accounts.remove(account);
     }
 
     public void remove (int index) {
-        try {
-            writeLock.lock();
-            accounts.remove(index);
-            CSVUtility.write(accounts, context);
-        } finally {
-            writeLock.unlock();
-        }
+        accounts.remove(get(index));
     }
 
     public int size() {
         return accounts.size();
     }
 
-    private void load(Context context) {
-        try {
-            readLock.lock();
-            accounts = CSVUtility.read(context);
-        } finally {
-            readLock.unlock();
-        }
+    public void load() {
+        accounts.clear();
+        CSVUtility.read(context, accounts);
     }
 
-    private void save(AccountItem account, Context context) {
-        new Thread(() -> {
-            accounts.add(account);
-            CSVUtility.write(accounts, context);
-        }).start();
+    public void save() {
+        CSVUtility.write(context, accounts);
     }
 }

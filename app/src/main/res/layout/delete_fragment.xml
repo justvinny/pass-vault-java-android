@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     android:id="@+id/delete_fragment">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
@@ -14,7 +21,8 @@
             android:id="@+id/delete_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            android:visibility="visible"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

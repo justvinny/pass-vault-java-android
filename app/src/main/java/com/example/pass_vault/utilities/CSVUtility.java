@@ -12,12 +12,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class CSVUtility {
     private static final String TAG = "CSVUtility";
     private static final String FILE_NAME = "accounts.csv";
 
-    public static void write(ArrayList<AccountItem> accounts, Context context) {
+    public static void write(Context context, LinkedBlockingQueue<AccountItem> accounts) {
         Log.d(TAG, "write: " + context.getFilesDir());
         File file = new File(context.getFilesDir(), FILE_NAME);
         FileWriter writer = null;
@@ -36,8 +37,7 @@ public class CSVUtility {
         }
     }
 
-    public static ArrayList<AccountItem> read(Context context) {
-        ArrayList<AccountItem> accounts = new ArrayList<>();
+    public static void read(Context context, LinkedBlockingQueue<AccountItem> accounts) {
         File file = new File(context.getFilesDir(), FILE_NAME);
         BufferedReader reader = null;
         try {
@@ -51,15 +51,13 @@ public class CSVUtility {
                 String password = fields[2];
 
                 if (!platform.equals("Platform")) {
-                    accounts.add(new AccountItem(platform, username, password));
+                    accounts.offer(new AccountItem(platform, username, password));
                 }
             }
 
             reader.close();
         } catch (IOException e) {
-            return accounts;
+            Log.d(TAG, "read: " + e.getMessage());
         }
-
-        return accounts;
     }
 }

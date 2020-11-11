@@ -21,8 +21,8 @@ public class HomeAccountsAdapter extends RecyclerView.Adapter<HomeAccountsAdapte
 
     private AccountsList accounts;
 
-    public HomeAccountsAdapter(Context context) {
-        accounts = new AccountsList(context);
+    public HomeAccountsAdapter(AccountsList accounts) {
+        this.accounts = accounts;
     }
 
     @NonNull
