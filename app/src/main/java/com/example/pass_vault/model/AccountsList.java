@@ -31,6 +31,7 @@ public class AccountsList {
     public boolean getIsLoaded() { return isLoaded.get(); }
     public void setIsLoaded(boolean isLoaded) { this.isLoaded.set(isLoaded); }
 
+    public LinkedBlockingDeque<AccountItem> getAccounts() { return accounts; }
     public void add(AccountItem account) {
         if (accounts.contains(account)) {
             String message = String.format("%s username for %s already exists.",
