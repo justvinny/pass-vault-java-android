@@ -85,8 +85,8 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
 
         if (this.getActivity() != null) {
             Toolbar toolbar = this.getActivity().findViewById(R.id.toolbar);
