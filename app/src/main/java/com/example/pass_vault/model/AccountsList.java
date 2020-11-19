@@ -8,6 +8,8 @@ import com.example.pass_vault.utilities.CSVUtility;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -80,5 +82,56 @@ public class AccountsList {
         } finally {
             readWriteLock.writeLock().unlock();
         }
+    }
+
+    public void sortPlatformAscending() {
+        ArrayList<AccountItem> accountsArr = new ArrayList<>(accounts);
+
+        Collections.sort(accountsArr, new Comparator<AccountItem>() {
+            @Override
+            public int compare(AccountItem t, AccountItem t1) {
+                return t.getPlatform().compareTo(t1.getPlatform());
+            }
+        });
+
+        accounts = new LinkedBlockingDeque<>(accountsArr);
+    }
+
+    public void sortPlatformDescending() {
+        ArrayList<AccountItem> accountsArr = new ArrayList<>(accounts);
+
+        Collections.sort(accountsArr, new Comparator<AccountItem>() {
+            @Override
+            public int compare(AccountItem t, AccountItem t1) {
+                return t1.getPlatform().compareTo(t.getPlatform());
+            }
+        });
+
+        accounts = new LinkedBlockingDeque<>(accountsArr);
+    }
+    public void sortUsernameAscending() {
+        ArrayList<AccountItem> accountsArr = new ArrayList<>(accounts);
+
+        Collections.sort(accountsArr, new Comparator<AccountItem>() {
+            @Override
+            public int compare(AccountItem t, AccountItem t1) {
+                return t.getUsername().compareTo(t1.getUsername());
+            }
+        });
+
+        accounts = new LinkedBlockingDeque<>(accountsArr);
+    }
+
+    public void sortUsernameDescending() {
+        ArrayList<AccountItem> accountsArr = new ArrayList<>(accounts);
+
+        Collections.sort(accountsArr, new Comparator<AccountItem>() {
+            @Override
+            public int compare(AccountItem t, AccountItem t1) {
+                return t1.getUsername().compareTo(t.getUsername());
+            }
+        });
+
+        accounts = new LinkedBlockingDeque<>(accountsArr);
     }
 }

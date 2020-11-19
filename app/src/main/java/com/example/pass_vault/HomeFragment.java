@@ -1,8 +1,11 @@
 package com.example.pass_vault;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pass_vault.model.AccountItem;
 import com.example.pass_vault.model.AccountsList;
 import com.example.pass_vault.model.adapters.HomeAccountsAdapter;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
@@ -95,6 +99,18 @@ public class HomeFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.app_bar_menu, menu);
 
+        MenuItem sortUsernameAsc = menu.findItem(R.id.sort_username_asc);
+        applyDarkText(sortUsernameAsc);
+
+        MenuItem sortUsernameDesc = menu.findItem(R.id.sort_username_desc);
+        applyDarkText(sortUsernameDesc);
+
+        MenuItem sortPlatformAsc = menu.findItem(R.id.sort_platform_asc);
+        applyDarkText(sortPlatformAsc);
+
+        MenuItem sortPlatformDesc = menu.findItem(R.id.sort_platform_desc);
+        applyDarkText(sortPlatformDesc);
+
         MenuItem search = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) search.getActionView();
         searchView.setQueryHint("Search username");
@@ -140,7 +156,39 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
+
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sort_platform_asc:
+                accounts.sortPlatformAscending();
+                updateAdapter(accounts);
+                return true;
+            case R.id.sort_platform_desc:
+                accounts.sortPlatformDescending();
+                updateAdapter(accounts);
+                return true;
+            case R.id.sort_username_asc:
+                accounts.sortUsernameAscending();
+                updateAdapter(accounts);
+                return true;
+            case R.id.sort_username_desc:
+                accounts.sortUsernameDescending();
+                updateAdapter(accounts);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void applyDarkText(MenuItem item) {
+        String title = item.getTitle().toString();
+        SpannableString spannableString = new SpannableString(title);
+        spannableString.setSpan(new ForegroundColorSpan(Color.BLACK), 0, spannableString.length(), 0);
+        item.setTitle(spannableString);
     }
 
     private void updateAdapter(AccountsList accounts) {

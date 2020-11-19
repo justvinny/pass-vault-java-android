@@ -2,9 +2,27 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/sort"
+        android:icon="@drawable/ic_baseline_sort_24"
+        android:title="@string/sort_title"
+        app:showAsAction="always">
+
+        <menu>
+            <item android:id="@+id/sort_platform_asc"
+                android:title="@string/platform_ascending"/>
+            <item android:id="@+id/sort_platform_desc"
+                android:title="@string/platform_descending"/>
+            <item android:id="@+id/sort_username_asc"
+                android:title="@string/username_ascending" />
+            <item android:id="@+id/sort_username_desc"
+                android:title="@string/username_descending"/>
+        </menu>
+    </item>
+
+    <item
         android:id="@+id/search"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="@string/search_title"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"/>
 </menu>

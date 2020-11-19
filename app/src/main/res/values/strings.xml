@@ -12,4 +12,10 @@
     <string name="reenter_password_hint">Re-enter Password</string>
     <string name="add_button_label">Add New Account</string>
     <string name="search_title">Search</string>
+    <string name="sort_title">Sort</string>
+    <string name="username_ascending">Username A - Z</string>
+    <string name="username_descending">Username Z - A</string>
+    <string name="platform_ascending">Platform A - Z</string>
+    <string name="platform_descending">Platform Z - A</string>
+
 </resources>
