@@ -6,19 +6,20 @@ Pass Vault allows you to store your passwords for all of your accounts in one ap
 - Store accounts to persistent storage 
 - View accounts stored and copy password to clipboard
 - Delete account from persistent storage
+- Search feature
+- Sort feature
 
 # Fixed:
 - Concurrency bugs for file I/O not showing a progress bar with Threads and Handler. 
 
 # Current Task:
-- Add a search account feature
+- Refactor to include search / sort feature for delete fragment.
 
 # Unfinished:
 - Create a password generator.
 - Use SQLite with Room DAO for persistent storage.
 - Add an export to CSV feature.
 - Add a login page.
-- Add a sort accounts by feature.
 - Add dark theme
 - Add About / Feedback pages.
 
@@ -28,6 +29,10 @@ Pass Vault allows you to store your passwords for all of your accounts in one ap
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/add_account.jpg" alt="Add Account Screenshot" width="370" height="750">
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/delete_account.jpg" alt="Delete Account Screenshot" width="370" height="750">
+
+<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/sort_feature.png" alt="Sort Screenshot" width="370" height="750">
+
+<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/search_feature.png" alt="Search Screenshot" width="370" height="750">
 
 # Old Desktop Version (Python)
 - The desktop version is one of the very first applications I've made when I was learning Python a year ago. 
