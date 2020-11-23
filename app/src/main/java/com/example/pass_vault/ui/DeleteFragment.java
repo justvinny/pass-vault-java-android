@@ -1,4 +1,4 @@
-package com.example.pass_vault;
+package com.example.pass_vault.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pass_vault.R;
 import com.example.pass_vault.model.AccountItem;
 import com.example.pass_vault.model.AccountsList;
 import com.example.pass_vault.model.adapters.DeleteAccountsAdapter;

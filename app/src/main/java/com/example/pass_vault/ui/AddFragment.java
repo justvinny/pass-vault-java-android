@@ -1,4 +1,4 @@
-package com.example.pass_vault;
+package com.example.pass_vault.ui;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.pass_vault.R;
 import com.example.pass_vault.model.AccountItem;
 import com.example.pass_vault.model.AccountsList;
 import com.example.pass_vault.utilities.CSVUtility;

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LoginActivity">
+
+    <Button
+        android:id="@+id/button_8"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/round_button"
+        android:text="8"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_5"
+        app:layout_constraintEnd_toStartOf="@+id/button_9"
+        app:layout_constraintStart_toEndOf="@+id/button_7" />
+
+    <Button
+        android:id="@+id/button_9"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/round_button"
+        android:text="9"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_6"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_7"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/round_button"
+        android:text="7"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_4"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_4"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/round_button"
+        android:text="4"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_6"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/round_button"
+        android:text="6"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_3"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_5"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/round_button"
+        android:text="5"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_2"
+        app:layout_constraintEnd_toStartOf="@+id/button_6"
+        app:layout_constraintStart_toEndOf="@+id/button_4" />
+
+    <Button
+        android:id="@+id/button_3"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/round_button"
+        android:text="3"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@id/button_0"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_1"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/round_button"
+        android:text="1"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@id/button_0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_2"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/round_button"
+        android:text="2"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@id/button_0"
+        app:layout_constraintEnd_toStartOf="@+id/button_3"
+        app:layout_constraintStart_toEndOf="@+id/button_1" />
+
+    <Button
+        android:id="@+id/button_0"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/round_button"
+        android:text="0"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextPass0"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:ems="2"
+        android:enabled="false"
+        android:inputType="numberPassword"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/button_8"
+        app:layout_constraintEnd_toStartOf="@+id/editTextPass1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextPass1"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content"
+        android:ems="2"
+        android:enabled="false"
+        android:inputType="numberPassword"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/button_8"
+        app:layout_constraintEnd_toStartOf="@+id/editTextPass2"
+        app:layout_constraintStart_toEndOf="@id/editTextPass0" />
+
+    <EditText
+        android:id="@+id/editTextPass2"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:ems="2"
+        android:enabled="false"
+        android:inputType="numberPassword"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/button_8"
+        app:layout_constraintEnd_toStartOf="@+id/editTextPass3"
+        app:layout_constraintStart_toEndOf="@id/editTextPass1" />
+
+    <EditText
+        android:id="@+id/editTextPass3"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content"
+        android:ems="2"
+        android:enabled="false"
+        android:inputType="numberPassword"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/button_8"
+        app:layout_constraintEnd_toStartOf="@+id/editTextPass4"
+        app:layout_constraintStart_toEndOf="@id/editTextPass2" />
+
+    <EditText
+        android:id="@+id/editTextPass4"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content"
+        android:ems="2"
+        android:enabled="false"
+        android:inputType="numberPassword"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/button_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/editTextPass3" />
+
+    <ImageView
+        android:id="@+id/image_back_space"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".2"
+        app:layout_constraintStart_toEndOf="@+id/button_0"
+        app:layout_constraintTop_toBottomOf="@+id/button_3"
+        app:layout_constraintWidth_percent=".2"
+        app:srcCompat="@drawable/ic_baseline_backspace_24" />
+</androidx.constraintlayout.widget.ConstraintLayout>
