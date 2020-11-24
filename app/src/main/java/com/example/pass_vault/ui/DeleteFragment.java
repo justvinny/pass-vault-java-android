@@ -7,12 +7,18 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,10 +27,12 @@ import com.example.pass_vault.R;
 import com.example.pass_vault.model.AccountItem;
 import com.example.pass_vault.model.AccountsList;
 import com.example.pass_vault.model.adapters.DeleteAccountsAdapter;
+import com.example.pass_vault.utilities.MenuItemTextColorUtility;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DeleteFragment extends Fragment {
 
@@ -36,6 +44,12 @@ public class DeleteFragment extends Fragment {
     private ProgressBar progressBar;
     private Handler handler = new Handler(Looper.getMainLooper());
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,6 +57,13 @@ public class DeleteFragment extends Fragment {
 
         accounts = new AccountsList(this.getContext());
         accountsToRemove = new ArrayList<>();
+
+        Toolbar toolbar = view.findViewById(R.id.delete_toolbar);
+
+        if (((AppCompatActivity) this.getActivity()) != null) {
+            Objects.requireNonNull(((AppCompatActivity) this.getActivity()).getSupportActionBar()).hide();
+            ((AppCompatActivity) this.getActivity()).setSupportActionBar(toolbar);
+        }
 
         recyclerView = (RecyclerView) view.findViewById(R.id.delete_recycler);
         recyclerView.setAdapter(new DeleteAccountsAdapter(accounts, accountsToRemove));
@@ -78,6 +99,106 @@ public class DeleteFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        if (this.getActivity() != null) {
+            Toolbar toolbar = this.getActivity().findViewById(R.id.toolbar);
+            ((AppCompatActivity) this.getActivity()).setSupportActionBar(toolbar);
+            Objects.requireNonNull(((AppCompatActivity) this.getActivity()).getSupportActionBar()).show();
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.app_bar_menu, menu);
+
+        MenuItem sortUsernameAsc = menu.findItem(R.id.sort_username_asc);
+        MenuItemTextColorUtility.applyDarkText(sortUsernameAsc);
+
+        MenuItem sortUsernameDesc = menu.findItem(R.id.sort_username_desc);
+        MenuItemTextColorUtility.applyDarkText(sortUsernameDesc);
+
+        MenuItem sortPlatformAsc = menu.findItem(R.id.sort_platform_asc);
+        MenuItemTextColorUtility.applyDarkText(sortPlatformAsc);
+
+        MenuItem sortPlatformDesc = menu.findItem(R.id.sort_platform_desc);
+        MenuItemTextColorUtility.applyDarkText(sortPlatformDesc);
+
+        MenuItem search = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) search.getActionView();
+        searchView.setQueryHint("Search username");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                new Thread(() -> {
+                    AccountsList tempAccounts = new AccountsList(getContext());
+
+                    for (AccountItem account : accounts.getAccounts()) {
+                        if (account.getUsername().contains(newText)) {
+                            tempAccounts.add(account);
+                        }
+                    }
+
+                    updateAdapter(tempAccounts);
+                }).start();
+
+                return true;
+            }
+        });
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() != null) {
+                    Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).setDisplayShowTitleEnabled(false);
+                }
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                if (getActivity() != null) {
+                    Objects.requireNonNull(((AppCompatActivity) getActivity()).getSupportActionBar()).setDisplayShowTitleEnabled(true);
+                }
+                return false;
+            }
+        });
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sort_platform_asc:
+                accounts.sortPlatformAscending();
+                updateAdapter();
+                return true;
+            case R.id.sort_platform_desc:
+                accounts.sortPlatformDescending();
+                updateAdapter();
+                return true;
+            case R.id.sort_username_asc:
+                accounts.sortUsernameAscending();
+                updateAdapter();
+                return true;
+            case R.id.sort_username_desc:
+                accounts.sortUsernameDescending();
+                updateAdapter();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private void deleteSelected() {
         for (AccountItem item : accountsToRemove) {
             accounts.remove(item);
@@ -89,8 +210,17 @@ public class DeleteFragment extends Fragment {
     }
 
     private void updateAdapter() {
-        recyclerView.setAdapter(new DeleteAccountsAdapter(accounts, accountsToRemove));
-        recyclerView.getAdapter().notifyDataSetChanged();
+        handler.post(() -> {
+            recyclerView.setAdapter(new DeleteAccountsAdapter(accounts, accountsToRemove));
+            recyclerView.getAdapter().notifyDataSetChanged();
+        });
+    }
+
+    private void updateAdapter(AccountsList accounts) {
+        handler.post(() -> {
+            recyclerView.setAdapter(new DeleteAccountsAdapter(accounts, accountsToRemove));
+            recyclerView.getAdapter().notifyDataSetChanged();
+        });
     }
 
     private void loadingAnimation() {

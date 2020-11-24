@@ -27,6 +27,7 @@ import com.example.pass_vault.R;
 import com.example.pass_vault.model.AccountItem;
 import com.example.pass_vault.model.AccountsList;
 import com.example.pass_vault.model.adapters.HomeAccountsAdapter;
+import com.example.pass_vault.utilities.MenuItemTextColorUtility;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
@@ -37,7 +38,6 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private Handler handler = new Handler(Looper.getMainLooper());
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,7 +58,6 @@ public class HomeFragment extends Fragment {
             Objects.requireNonNull(((AppCompatActivity) this.getActivity()).getSupportActionBar()).hide();
             ((AppCompatActivity) this.getActivity()).setSupportActionBar(toolbar);
         }
-
 
         recyclerView = (RecyclerView) view.findViewById(R.id.home_recycler);
         recyclerView.setAdapter(new HomeAccountsAdapter(accounts));
@@ -101,16 +100,16 @@ public class HomeFragment extends Fragment {
         inflater.inflate(R.menu.app_bar_menu, menu);
 
         MenuItem sortUsernameAsc = menu.findItem(R.id.sort_username_asc);
-        applyDarkText(sortUsernameAsc);
+        MenuItemTextColorUtility.applyDarkText(sortUsernameAsc);
 
         MenuItem sortUsernameDesc = menu.findItem(R.id.sort_username_desc);
-        applyDarkText(sortUsernameDesc);
+        MenuItemTextColorUtility.applyDarkText(sortUsernameDesc);
 
         MenuItem sortPlatformAsc = menu.findItem(R.id.sort_platform_asc);
-        applyDarkText(sortPlatformAsc);
+        MenuItemTextColorUtility.applyDarkText(sortPlatformAsc);
 
         MenuItem sortPlatformDesc = menu.findItem(R.id.sort_platform_desc);
-        applyDarkText(sortPlatformDesc);
+        MenuItemTextColorUtility.applyDarkText(sortPlatformDesc);
 
         MenuItem search = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) search.getActionView();
@@ -183,13 +182,6 @@ public class HomeFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void applyDarkText(MenuItem item) {
-        String title = item.getTitle().toString();
-        SpannableString spannableString = new SpannableString(title);
-        spannableString.setSpan(new ForegroundColorSpan(Color.BLACK), 0, spannableString.length(), 0);
-        item.setTitle(spannableString);
     }
 
     private void updateAdapter(AccountsList accounts) {

@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     android:id="@+id/delete_fragment">
 
+    <include
+        android:id="@+id/delete_toolbar"
+        layout="@layout/toolbar"
+        />
+
     <ProgressBar
         android:id="@+id/progress_bar_delete"
         android:layout_width="wrap_content"
@@ -12,7 +17,7 @@
         android:layout_centerInParent="true"/>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_alignParentTop="true"
+       android:layout_below="@id/delete_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
