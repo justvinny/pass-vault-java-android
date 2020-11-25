@@ -8,22 +8,26 @@ Pass Vault allows you to store your passwords for all of your accounts in one ap
 - Delete account from persistent storage
 - Search feature
 - Sort feature
+- Create passcode and login feature using SharedPreferences.
 
 # Fixed:
 - Concurrency bugs for file I/O not showing a progress bar with Threads and Handler. 
 
 # Current Task:
-- Refactor to include search / sort feature for delete fragment.
+- Create a password generator.
 
 # Unfinished:
 - Create a password generator.
 - Use SQLite with Room DAO for persistent storage.
 - Add an export to CSV feature.
-- Add a login page.
 - Add dark theme
 - Add About / Feedback pages.
 
 # Screenshots:
+<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/create_passcode.png" alt="Create Passcode Screenshot" width="370" height="750">
+
+<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/login_screen.png" alt="Login Screenshot" width="370" height="750">
+
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/home.jpg" alt="Home Screenshot" width="370" height="750">
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/add_account.jpg" alt="Add Account Screenshot" width="370" height="750">

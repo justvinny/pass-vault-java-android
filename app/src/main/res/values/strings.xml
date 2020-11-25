@@ -6,9 +6,9 @@
     <string name="default_account_number">1</string>
     <string name="default_platform">Platform</string>
     <string name="default_username">Username</string>
-    <string name="platform_hint">Platforn Name - e.g. Netflix</string>
+    <string name="platform_hint">Platform Name - e.g. Netflix</string>
     <string name="username_hint">Username</string>
-    <string name="password_hint">Password</string>
+    <string name="password_hint">Enter Password</string>
     <string name="reenter_password_hint">Re-enter Password</string>
     <string name="add_button_label">Add New Account</string>
     <string name="search_title">Search</string>
@@ -17,5 +17,10 @@
     <string name="username_descending">Username Z - A</string>
     <string name="platform_ascending">Platform A - Z</string>
     <string name="platform_descending">Platform Z - A</string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_account_text">Create a 5 digit passcode that will be used to login to the application.</string>
+    <string name="create_passcode">Create Passcode</string>
+    <string name="saved_passcode">SAVED_PASSCODE</string>
+    <string name="preference_file_login">PREFERENCE_FILE_LOGIN</string>
 </resources>
