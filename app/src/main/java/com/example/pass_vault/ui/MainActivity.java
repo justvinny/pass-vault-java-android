@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = new HomeFragment();
             } else if (item.getItemId() == R.id.add) {
                 selectedFragment = new AddFragment();
+            } else if (item.getItemId() == R.id.generate_password) {
+                selectedFragment = new PasswordGeneratorFragment();
             } else if (item.getItemId() == R.id.delete) {
                 selectedFragment = new DeleteFragment();
             }
