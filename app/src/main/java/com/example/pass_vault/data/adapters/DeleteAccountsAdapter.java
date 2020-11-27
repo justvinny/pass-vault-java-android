@@ -1,8 +1,7 @@
-package com.example.pass_vault.model.adapters;
+package com.example.pass_vault.data.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.media.audiofx.AcousticEchoCanceler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pass_vault.R;
-import com.example.pass_vault.model.AccountItem;
-import com.example.pass_vault.model.AccountsList;
-import com.example.pass_vault.utilities.CopyUtility;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.pass_vault.data.AccountItem;
+import com.example.pass_vault.data.AccountsList;
 
 import java.util.ArrayList;
 import java.util.Locale;

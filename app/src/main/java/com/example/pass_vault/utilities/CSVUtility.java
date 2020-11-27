@@ -3,17 +3,14 @@ package com.example.pass_vault.utilities;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.pass_vault.model.AccountItem;
+import com.example.pass_vault.data.AccountItem;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class CSVUtility {
     private static final String TAG = "CSVUtility";

@@ -12,13 +12,13 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.pass_vault.R;
-import com.example.pass_vault.model.AccountItem;
-import com.example.pass_vault.model.AccountsList;
-import com.example.pass_vault.utilities.CSVUtility;
+import com.example.pass_vault.data.AccountItem;
+import com.example.pass_vault.data.AccountsList;
 import com.example.pass_vault.utilities.KeyboardUtility;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -34,7 +34,11 @@ public class AddFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.add_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_add, container, false);
+
+        if (this.getActivity() != null) {
+            ((AppCompatActivity) this.getActivity()).getSupportActionBar().setTitle("Add Account");
+        }
 
         accounts = new AccountsList(view.getContext());
 

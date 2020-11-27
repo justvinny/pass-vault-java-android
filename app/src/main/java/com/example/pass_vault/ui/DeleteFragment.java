@@ -1,11 +1,8 @@
 package com.example.pass_vault.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,9 +21,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pass_vault.R;
-import com.example.pass_vault.model.AccountItem;
-import com.example.pass_vault.model.AccountsList;
-import com.example.pass_vault.model.adapters.DeleteAccountsAdapter;
+import com.example.pass_vault.data.AccountItem;
+import com.example.pass_vault.data.AccountsList;
+import com.example.pass_vault.data.adapters.DeleteAccountsAdapter;
 import com.example.pass_vault.utilities.MenuItemTextColorUtility;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -53,7 +50,7 @@ public class DeleteFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.delete_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_delete, container, false);
 
         accounts = new AccountsList(this.getContext());
         accountsToRemove = new ArrayList<>();
@@ -63,6 +60,7 @@ public class DeleteFragment extends Fragment {
         if (((AppCompatActivity) this.getActivity()) != null) {
             Objects.requireNonNull(((AppCompatActivity) this.getActivity()).getSupportActionBar()).hide();
             ((AppCompatActivity) this.getActivity()).setSupportActionBar(toolbar);
+            ((AppCompatActivity) this.getActivity()).getSupportActionBar().setTitle("Delete Account");
         }
 
         recyclerView = (RecyclerView) view.findViewById(R.id.delete_recycler);

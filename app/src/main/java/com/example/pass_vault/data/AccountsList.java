@@ -1,21 +1,15 @@
-package com.example.pass_vault.model;
+package com.example.pass_vault.data;
 
-import android.accounts.Account;
 import android.content.Context;
-import android.util.Log;
 
 import com.example.pass_vault.utilities.CSVUtility;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class AccountsList {

@@ -1,6 +1,6 @@
 package com.example.pass_vault.utilities;
 
-import com.example.pass_vault.model.AccountItem;
+import com.example.pass_vault.data.AccountItem;
 
 import java.util.ArrayList;
 

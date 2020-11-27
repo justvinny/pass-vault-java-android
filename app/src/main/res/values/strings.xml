@@ -30,4 +30,5 @@
     <string name="switch_label_numbers">Numbers</string>
     <string name="switch_label_lowercase_letters">Lowercase Letters</string>
     <string name="switch_label_uppercase_letters">Uppercase Letters</string>
+    <string name="copy_icon_desc">Copy icon</string>
 </resources>

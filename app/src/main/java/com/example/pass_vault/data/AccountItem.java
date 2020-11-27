@@ -1,4 +1,4 @@
-package com.example.pass_vault.model;
+package com.example.pass_vault.data;
 
 import java.util.Objects;
 
