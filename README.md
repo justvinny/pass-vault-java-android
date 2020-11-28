@@ -34,7 +34,7 @@ Pass Vault allows you to store your passwords for all of your accounts in one ap
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/delete_account.jpg" alt="Delete Account Screenshot" width="370" height="750">
 
-<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/password_generator.jpg" alt="Password Generator Screenshot" width="370" height="750">
+<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/password_generator.png" alt="Password Generator Screenshot" width="370" height="750">
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/sort_feature.png" alt="Sort Screenshot" width="370" height="750">
 
