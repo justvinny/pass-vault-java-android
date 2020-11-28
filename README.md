@@ -6,6 +6,7 @@ Pass Vault allows you to store your passwords for all of your accounts in one ap
 - Store accounts to persistent storage 
 - View accounts stored and copy password to clipboard
 - Delete account from persistent storage
+- Random password generator
 - Search feature
 - Sort feature
 - Create passcode and login feature using SharedPreferences.
@@ -14,16 +15,15 @@ Pass Vault allows you to store your passwords for all of your accounts in one ap
 - Concurrency bugs for file I/O not showing a progress bar with Threads and Handler. 
 
 # Current Task:
-- Create a password generator.
+- Add import/export CSV feature.
 
 # Unfinished:
-- Create a password generator.
 - Use SQLite with Room DAO for persistent storage.
-- Add an export to CSV feature.
+- Add an import/export to CSV feature.
 - Add dark theme
 - Add About / Feedback pages.
 
-# Screenshots:
+# Screenshots: 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/create_passcode.png" alt="Create Passcode Screenshot" width="370" height="750">
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/login_screen.png" alt="Login Screenshot" width="370" height="750">
@@ -33,6 +33,8 @@ Pass Vault allows you to store your passwords for all of your accounts in one ap
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/add_account.jpg" alt="Add Account Screenshot" width="370" height="750">
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/delete_account.jpg" alt="Delete Account Screenshot" width="370" height="750">
+
+<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/password_generator.jpg" alt="Password Generator Screenshot" width="370" height="750">
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/sort_feature.png" alt="Sort Screenshot" width="370" height="750">
 

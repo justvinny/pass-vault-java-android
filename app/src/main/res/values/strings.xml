@@ -24,11 +24,11 @@
     <string name="saved_passcode">SAVED_PASSCODE</string>
     <string name="preference_file_login">PREFERENCE_FILE_LOGIN</string>
     <string name="password_generator">Generator</string>
-    <string name="default_slider_value">8</string>
     <string name="btn_label_generate_password">Generate Password</string>
     <string name="switch_label_special_characters">Special Characters</string>
     <string name="switch_label_numbers">Numbers</string>
     <string name="switch_label_lowercase_letters">Lowercase Letters</string>
     <string name="switch_label_uppercase_letters">Uppercase Letters</string>
     <string name="copy_icon_desc">Copy icon</string>
+    <string name="number_of_characters">Number of Characters</string>
 </resources>
