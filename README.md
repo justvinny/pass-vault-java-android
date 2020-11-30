@@ -28,17 +28,19 @@ Pass Vault allows you to store your passwords for all of your accounts in one ap
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/login_screen.png" alt="Login Screenshot" width="370" height="750">
 
-<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/home.jpg" alt="Home Screenshot" width="370" height="750">
+<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/home.png" alt="Home Screenshot" width="370" height="750">
 
-<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/add_account.jpg" alt="Add Account Screenshot" width="370" height="750">
+<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/add_account.png" alt="Add Account Screenshot" width="370" height="750">
 
-<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/delete_account.jpg" alt="Delete Account Screenshot" width="370" height="750">
+<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/delete_account.png" alt="Delete Account Screenshot" width="370" height="750">
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/password_generator.png" alt="Password Generator Screenshot" width="370" height="750">
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/sort_feature.png" alt="Sort Screenshot" width="370" height="750">
 
 <img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/search_feature.png" alt="Search Screenshot" width="370" height="750">
+
+<img src="https://github.com/justvinny/pass-vault-java-android/blob/main/Screenshots/menu.png" alt="Menu Screenshot" width="370" height="750">
 
 # Old Desktop Version (Python)
 - The desktop version is one of the very first applications I've made when I was learning Python a year ago. 
