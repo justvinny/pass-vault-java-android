@@ -112,18 +112,6 @@ public class DeleteFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.app_bar_menu, menu);
 
-        MenuItem sortUsernameAsc = menu.findItem(R.id.sort_username_asc);
-        MenuItemTextColorUtility.applyDarkText(sortUsernameAsc);
-
-        MenuItem sortUsernameDesc = menu.findItem(R.id.sort_username_desc);
-        MenuItemTextColorUtility.applyDarkText(sortUsernameDesc);
-
-        MenuItem sortPlatformAsc = menu.findItem(R.id.sort_platform_asc);
-        MenuItemTextColorUtility.applyDarkText(sortPlatformAsc);
-
-        MenuItem sortPlatformDesc = menu.findItem(R.id.sort_platform_desc);
-        MenuItemTextColorUtility.applyDarkText(sortPlatformDesc);
-
         MenuItem search = menu.findItem(R.id.search);
         SearchView searchView = (SearchView) search.getActionView();
         searchView.setQueryHint("Search username");

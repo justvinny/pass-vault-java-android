@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.pass_vault.R;
@@ -37,6 +38,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_app_bar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.main_exit_menu_item) {
+            finishAffinity();
+            System.exit(0);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     private class NavigationListener implements BottomNavigationView.OnNavigationItemSelectedListener {
         @Override
