@@ -69,6 +69,13 @@ public class AccountsList {
 
     }
 
+    public static LinkedBlockingDeque<AccountItem> getAccountsSaved(Context context) {
+        LinkedBlockingDeque<AccountItem> accountList = new LinkedBlockingDeque<>();
+        CSVUtility.read(context, accountList);
+
+        return accountList;
+    }
+
     public void save() {
         try {
             readWriteLock.writeLock().lock();

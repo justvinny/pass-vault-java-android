@@ -9,13 +9,14 @@ Pass Vault allows you to store your passwords for all of your accounts in one ap
 - Random password generator
 - Search feature
 - Sort feature
+- Added export save feature.
 - Create passcode and login feature using SharedPreferences.
 
 # Fixed:
 - Concurrency bugs for file I/O not showing a progress bar with Threads and Handler. 
 
 # Current Task:
-- Add import/export CSV feature.
+- Add import CSV feature;
 
 # Unfinished:
 - Use SQLite with Room DAO for persistent storage.

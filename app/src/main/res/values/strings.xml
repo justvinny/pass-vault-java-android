@@ -32,4 +32,7 @@
     <string name="copy_icon_desc">Copy icon</string>
     <string name="number_of_characters">Number of Characters</string>
     <string name="exit_menu_item">Exit</string>
+    <string name="import_csv_label">Import CSV</string>
+    <string name="export_csv_label">Export CSV</string>
+    <string name="enter_file_name_hint">Enter file name.</string>
 </resources>

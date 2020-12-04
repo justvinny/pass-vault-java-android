@@ -16,9 +16,7 @@ public class CSVUtility {
     private static final String TAG = "CSVUtility";
     private static final String FILE_NAME = "accounts.csv";
 
-    public static void write(Context context, LinkedBlockingDeque<AccountItem> accounts) {
-        Log.d(TAG, "write: " + context.getFilesDir());
-        File file = new File(context.getFilesDir(), FILE_NAME);
+    public static void write(File file, Context context, LinkedBlockingDeque<AccountItem> accounts) {
         FileWriter writer = null;
         try {
             writer = new FileWriter(file);
@@ -33,6 +31,12 @@ public class CSVUtility {
         } catch (IOException e) {
             Log.d(TAG, e.getMessage());
         }
+    }
+
+    public static void write(Context context, LinkedBlockingDeque<AccountItem> accounts) {
+        File file = new File (context.getFilesDir(), FILE_NAME);
+
+        write(file, context, accounts);
     }
 
     public static void read(Context context, LinkedBlockingDeque<AccountItem> accounts) {
