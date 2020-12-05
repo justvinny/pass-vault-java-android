@@ -11,20 +11,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.pass_vault.R;
-import com.example.pass_vault.data.AccountItem;
-import com.example.pass_vault.data.AccountsList;
-import com.example.pass_vault.utilities.CSVUtility;
+import com.example.pass_vault.ui.dialogs.ExportCSVDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.io.File;
-import java.util.concurrent.LinkedBlockingDeque;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String EXPORT_CSV = "EXPORT_CSV";
     private static final String TAG = "MainActivity";
-    private static final int CREATE_REQUEST_CODE = 40;
-    private static final int OPEN_REQUEST_CODE = 41;
-    private static final int SAVE_REQUEST_CODE = 42;
 
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigation;
@@ -58,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.import_csv_menu_item) {
 
         } else if (item.getItemId() == R.id.export_csv_menu_item) {
-            (new ExportCSVDialogFragment()).show(getSupportFragmentManager(), "Test");
+            (new ExportCSVDialogFragment()).show(getSupportFragmentManager(), EXPORT_CSV);
         } else if (item.getItemId() == R.id.exit_menu_item) {
             finishAffinity();
             System.exit(0);

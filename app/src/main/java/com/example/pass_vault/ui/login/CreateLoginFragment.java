@@ -1,4 +1,4 @@
-package com.example.pass_vault.ui;
+package com.example.pass_vault.ui.login;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package com.example.pass_vault.ui;
+package com.example.pass_vault.ui.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

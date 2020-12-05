@@ -1,4 +1,4 @@
-package com.example.pass_vault.ui;
+package com.example.pass_vault.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.pass_vault.R;
+import com.example.pass_vault.ui.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;

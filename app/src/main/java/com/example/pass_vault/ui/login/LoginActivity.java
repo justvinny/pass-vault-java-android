@@ -1,21 +1,13 @@
-package com.example.pass_vault.ui;
+package com.example.pass_vault.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.pass_vault.R;
-
-import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
