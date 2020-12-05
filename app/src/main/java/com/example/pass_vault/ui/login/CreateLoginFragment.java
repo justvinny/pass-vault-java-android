@@ -13,7 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.pass_vault.R;
+import com.example.pass_vault.utilities.KeyboardUtility;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Objects;
 
 public class CreateLoginFragment extends Fragment {
 
@@ -41,9 +44,10 @@ public class CreateLoginFragment extends Fragment {
                 if (validPasscode(passcode.getText().toString(), confirmPasscode.getText().toString())) {
                     savePasscode();
                     clearFields();
-                    getActivity().recreate();
+                    Objects.requireNonNull(getActivity()).recreate();
                     Snackbar.make(view, "Successfully created passcode!", Snackbar.LENGTH_SHORT).show();
                 } else {
+                    KeyboardUtility.hideKeyboard(Objects.requireNonNull(getActivity()));
                     Snackbar.make(view, "Passcodes must not be empty, must match, and must be less than 5 digits.",
                             Snackbar.LENGTH_SHORT).show();
                 }
