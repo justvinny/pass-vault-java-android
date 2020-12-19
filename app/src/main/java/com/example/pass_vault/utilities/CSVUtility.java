@@ -39,8 +39,7 @@ public class CSVUtility {
         write(file, context, accounts);
     }
 
-    public static void read(Context context, LinkedBlockingDeque<AccountItem> accounts) {
-        File file = new File(context.getFilesDir(), FILE_NAME);
+    public static void read(Context context, LinkedBlockingDeque<AccountItem> accounts, File file) {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(file));
@@ -48,6 +47,12 @@ public class CSVUtility {
             String row;
             while ((row = reader.readLine()) != null) {
                 String[] fields = row.split(",");
+
+                if (fields.length != 3) {
+                    reader.close();
+                    return;
+                }
+
                 String platform = fields[0];
                 String username = fields[1];
                 String password = fields[2];
@@ -61,5 +66,10 @@ public class CSVUtility {
         } catch (IOException e) {
             Log.d(TAG, "read: " + e.getMessage());
         }
+    }
+
+    public static void read(Context context, LinkedBlockingDeque<AccountItem> accounts) {
+        File file = new File(context.getFilesDir(), FILE_NAME);
+        read(context, accounts, file);
     }
 }

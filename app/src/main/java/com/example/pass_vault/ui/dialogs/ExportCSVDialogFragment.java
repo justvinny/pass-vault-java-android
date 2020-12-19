@@ -1,13 +1,17 @@
 package com.example.pass_vault.ui.dialogs;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +22,7 @@ import com.example.pass_vault.R;
 import com.example.pass_vault.data.AccountItem;
 import com.example.pass_vault.data.AccountsList;
 import com.example.pass_vault.utilities.CSVUtility;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.util.Objects;
@@ -26,8 +31,15 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class ExportCSVDialogFragment extends DialogFragment {
 
     private static final String TAG = "ExportCSVDialogFragment";
+    private static final Handler handler = new Handler(Looper.getMainLooper());
 
+    private FrameLayout frameLayout;
     private EditText editTextFileName;
+
+    public ExportCSVDialogFragment(FrameLayout frameLayout) {
+        this.frameLayout = frameLayout;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -36,7 +48,8 @@ public class ExportCSVDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_export_csv_dialog, null);
 
         TextView message = (TextView) view.findViewById(R.id.text_dialog_message);
-        message.setText("Directory: " + getActivity().getExternalFilesDir(null).toString());
+        String messageString = "Directory" + getActivity().getExternalFilesDir(null).toString();
+        message.setText(messageString);
 
         editTextFileName = (EditText) view.findViewById(R.id.edit_dialog_file_name);
 
@@ -46,6 +59,9 @@ public class ExportCSVDialogFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         if (!editTextFileName.getText().toString().isEmpty()) {
                             saveCSV();
+                            Snackbar.make(frameLayout, "Exported successfully.", Snackbar.LENGTH_SHORT).show();
+                        } else {
+                            Snackbar.make(frameLayout, "Invalid input.", Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });

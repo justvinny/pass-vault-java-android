@@ -9,13 +9,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.example.pass_vault.R;
 import com.example.pass_vault.ui.dialogs.ExportCSVDialogFragment;
 import com.example.pass_vault.ui.dialogs.ImportCSVDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ImportCSVDialogFragment.ImportCSVDialogListener {
 
     public static final String IMPORT_CSV = "IMPORT_CSV";
     public static final String EXPORT_CSV = "EXPORT_CSV";
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigation;
+    private FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(new NavigationListener());
+
+        frameLayout = findViewById(R.id.fragment_container);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -51,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.import_csv_menu_item) {
-            (new ImportCSVDialogFragment()).show(getSupportFragmentManager(), IMPORT_CSV);
+            (new ImportCSVDialogFragment(frameLayout)).show(getSupportFragmentManager(), IMPORT_CSV);
         } else if (item.getItemId() == R.id.export_csv_menu_item) {
-            (new ExportCSVDialogFragment()).show(getSupportFragmentManager(), EXPORT_CSV);
+            (new ExportCSVDialogFragment(frameLayout)).show(getSupportFragmentManager(), EXPORT_CSV);
         } else if (item.getItemId() == R.id.exit_menu_item) {
             finishAffinity();
             System.exit(0);
@@ -85,5 +90,14 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         }
+    }
+
+    @Override
+    public void onReturnValue(boolean isDismissed) {
+        if (isDismissed) {
+            recreate();
+        }
+
+        Log.d(TAG, "onReturnValue: " + isDismissed);
     }
 }
