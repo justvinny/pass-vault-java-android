@@ -3,9 +3,15 @@
     <item
         android:id="@+id/import_csv_menu_item"
         android:title="@string/import_csv_label" />
+    
     <item
         android:id="@+id/export_csv_menu_item"
         android:title="@string/export_csv_label" />
+
+    <item
+        android:id="@+id/about_menu_item"
+        android:title="@string/about_menu_title"/>
+
     <item
         android:id="@+id/exit_menu_item"
         android:title="@string/exit_menu_item" />

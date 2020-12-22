@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.pass_vault.R;
+import com.example.pass_vault.ui.about.AboutActivity;
 import com.example.pass_vault.ui.dialogs.ExportCSVDialogFragment;
 import com.example.pass_vault.ui.dialogs.ImportCSVDialogFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements ImportCSVDialogFr
             (new ImportCSVDialogFragment(frameLayout)).show(getSupportFragmentManager(), IMPORT_CSV);
         } else if (item.getItemId() == R.id.export_csv_menu_item) {
             (new ExportCSVDialogFragment(frameLayout)).show(getSupportFragmentManager(), EXPORT_CSV);
+        } else if (item.getItemId() == R.id.about_menu_item) {
+            launchAboutActivity();
         } else if (item.getItemId() == R.id.exit_menu_item) {
             finishAffinity();
             System.exit(0);
@@ -66,6 +70,20 @@ public class MainActivity extends AppCompatActivity implements ImportCSVDialogFr
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void launchAboutActivity() {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onReturnValue(boolean isDismissed) {
+        if (isDismissed) {
+            recreate();
+        }
+
+        Log.d(TAG, "onReturnValue: " + isDismissed);
     }
 
     private class NavigationListener implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -90,14 +108,5 @@ public class MainActivity extends AppCompatActivity implements ImportCSVDialogFr
 
             return true;
         }
-    }
-
-    @Override
-    public void onReturnValue(boolean isDismissed) {
-        if (isDismissed) {
-            recreate();
-        }
-
-        Log.d(TAG, "onReturnValue: " + isDismissed);
     }
 }
