@@ -1,6 +1,7 @@
 package com.example.pass_vault.ui;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ public class PasswordGeneratorFragment extends Fragment {
         }
 
         editTextGeneratedPassword = (EditText) view.findViewById(R.id.edit_generated_password);
+        editTextGeneratedPassword.setInputType(InputType.TYPE_NULL); // Make uneditable
         imgCopy = (ImageView) view.findViewById(R.id.img_copy_pass);
         btnGeneratePassword = (Button) view.findViewById(R.id.button_generate_password);
         nCharactersSlider = (Slider) view.findViewById(R.id.char_limit_slider);

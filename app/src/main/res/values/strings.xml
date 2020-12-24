@@ -37,7 +37,7 @@
     <string name="enter_file_name_hint">Enter file name.</string>
     <string name="about_menu_title">About</string>
     <string name="about_app_message">Pass vault is free and open source. It is developed by a computer science student who loves anything and everything to do about Android. As this is a free application being developed by a sole developer on his free time on top of work and studies, updates will be very sporadic. In saying that, I am very open to any feedback, ideas, and suggestions, so feel free to send me an e-mail.</string>
-    <string name="developer_email">developer@gmail.com</string>
+    <string name="developer_email">nosniv.developer@gmail.com</string>
     <string name="feedback_header">Send feedback or suggestions to</string>
     <string name="follow_us_header">Follow us on</string>
 </resources>

@@ -8,38 +8,38 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white">
 
         <TextView
             android:id="@+id/text_number"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="@color/indigo_700"
             android:clickable="true"
             android:focusable="true"
             android:text="@string/default_account_number"
-            android:textAlignment="center"
+            android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="60sp"
+            android:textSize="34sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".25" />
+            app:layout_constraintWidth_percent=".15" />
 
         <TextView
             android:id="@+id/text_platform"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
+            android:scrollbars="horizontal"
             android:text="@string/default_platform"
             android:textColor="@color/black"
-            android:textSize="34sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/text_number"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/default_username"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/text_platform"
             app:layout_constraintTop_toBottomOf="@+id/text_platform" />
     </androidx.constraintlayout.widget.ConstraintLayout>
