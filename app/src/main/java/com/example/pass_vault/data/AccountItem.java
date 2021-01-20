@@ -1,8 +1,15 @@
 package com.example.pass_vault.data;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.Objects;
 
+@Entity(tableName = "account_item_table")
 public class AccountItem {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String platform;
     private String username;
     private String password;
@@ -13,6 +20,10 @@ public class AccountItem {
         this.password = password;
         mustNotBeEmpty();
     }
+
+    public void setId(int id) {
+        this.id = id;
+    };
 
     public String getPlatform() {
         return platform;
