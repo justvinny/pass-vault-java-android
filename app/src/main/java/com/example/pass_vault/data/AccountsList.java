@@ -15,9 +15,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class AccountsList {
     private static final String TAG = "AccountsList";
     private LinkedBlockingDeque<AccountItem> accounts;
-    private Context context;
-    private ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-    private AtomicBoolean isLoaded = new AtomicBoolean(false);
+    private final Context context;
+    private final AtomicBoolean isLoaded = new AtomicBoolean(false);
 
     public AccountsList(Context context) {
         this.context = context;
@@ -58,15 +57,11 @@ public class AccountsList {
     }
 
     public void load() {
-        try {
-            readWriteLock.readLock().lock();
+        AccountsDatabase.dbWriterExecutor.execute(() -> {
             accounts.clear();
             CSVUtility.read(context, accounts);
             setIsLoaded(true);
-        } finally {
-            readWriteLock.readLock().unlock();
-        }
-
+        });
     }
 
     public static LinkedBlockingDeque<AccountItem> getAccountsSaved(Context context) {
@@ -77,12 +72,9 @@ public class AccountsList {
     }
 
     public void save() {
-        try {
-            readWriteLock.writeLock().lock();
+        AccountsDatabase.dbWriterExecutor.execute(() -> {
             CSVUtility.write(context, accounts);
-        } finally {
-            readWriteLock.writeLock().unlock();
-        }
+        });
     }
 
     public void sortPlatformAscending() {

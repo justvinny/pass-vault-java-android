@@ -25,6 +25,10 @@ public class AccountItem {
         this.id = id;
     };
 
+    public int getId() {
+        return id;
+    }
+
     public String getPlatform() {
         return platform;
     }
@@ -53,7 +57,7 @@ public class AccountItem {
 
     @Override
     public int hashCode() {
-        return Objects.hash(platform, username);
+        return Objects.hash(platform, username, password);
     }
 
     private void mustNotBeEmpty() {
